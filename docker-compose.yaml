@@ -6,4 +6,8 @@ services:
       - 5173:5173
     volumes:
       - .:/app
-    command: /bin/sh -c "cd /app; npm run dev;"
+      - /app/node_modules # node_modules を除外してホスト影響を受けないように
+    environment:
+      - CHOKIDAR_USEPOLLING=true  # ファイル変更検知をポーリングにする
+      - WATCHPACK_POLLING=true     # Webpack の監視をポーリングにする
+    command: sh -c "cd /app && npm install && npm run dev"

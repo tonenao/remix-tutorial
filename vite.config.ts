@@ -9,4 +9,10 @@ export default defineConfig({
     }),
     tsconfigPaths(),
   ],
+  server: {
+    host: "0.0.0.0",  // コンテナ外からもアクセス可能に
+    watch: {
+      usePolling: true,  // ファイル変更をポーリングで監視
+    },
+  },
 });
